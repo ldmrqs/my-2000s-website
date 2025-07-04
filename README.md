@@ -2,7 +2,7 @@
 
 Welcome to my interactive resume project! This is a retro-inspired portfolio site that emulates a classic **Windows XP** PC. It’s not just a creative way to present my work, but also a tribute to the technology of the early 2000s, designed to capture the nostalgia of my first experiences with computers.
 
-![Descrição da Imagem](website.png)
+![website.png](website.png)
 
 ---
 
