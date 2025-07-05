@@ -3,24 +3,24 @@ let sistemaLigado = true;
 let janelaAtiva = null;
 let zIndexCounter = 100;
 
-// Configuração EmailJS
-const EMAIL_SERVICE_ID = "service_zkt1wfc"; // Substitui
-const EMAIL_TEMPLATE_ID = "template_pqwcaat"; // Substitui
+// emailjs configuration for the guestbook
+const EMAIL_SERVICE_ID = "service_zkt1wfc"; 
+const EMAIL_TEMPLATE_ID = "template_pqwcaat";
 let ultimoEnvio = 0;
 
-// Elementos principais
+// primary elements
 const monitor = document.querySelector('.tela');
 const ledMonitor = document.querySelector('.ledpower');
 const ledGabinete = document.querySelector('.ledgabinete');
 const botaoMonitor = document.querySelector('#botaoligardesligar');
 const botaoGabinete = document.querySelector('#simbolobotaogabinete');
 
-// Função pra gerar IP falso
+// false ip address function, generates a random IP address for the guestbook section
 function gerarIPFalso() {
     return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}`;
 }
 
-// Função pra ligar/desligar o sistema
+// function to toggle power state
 function togglePower() {
     sistemaLigado = !sistemaLigado;
 
@@ -39,7 +39,6 @@ function togglePower() {
     }
 }
 
-// Event listeners pros botões de power
 if (botaoMonitor) {
     botaoMonitor.addEventListener('click', togglePower);
 }
@@ -47,7 +46,6 @@ if (botaoGabinete) {
     botaoGabinete.addEventListener('click', togglePower);
 }
 
-// Função pra salvar o autógrafo
 window.salvarAutografo = function() {
     const textarea = document.getElementById('livroAutografos');
     const botaoSalvar = document.getElementById('botaoSalvar');
@@ -78,7 +76,7 @@ window.salvarAutografo = function() {
     botaoSalvar.textContent = 'sending...';
 
     const dadosEmail = {
-        to_email: "ldrmqs@gmail.com", // Substitui com seu email
+        to_email: "ldrmqs@gmail.com", // my email address to receive the messages
         from_name: "fren",
         message: mensagem,
         timestamp: new Date().toLocaleString('pt-BR'),
@@ -88,14 +86,14 @@ window.salvarAutografo = function() {
     emailjs.send(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, dadosEmail)
         .then(() => {
             ultimoEnvio = Date.now();
-            mostrarFeedback('success! thanks for the message, fren.', 'success');
+            mostrarFeedback('success!', 'success');
 
-            // Easter egg do IP falso
+            // ip address easter egg
             setTimeout(() => {
                 mostrarFeedback("thank you for passing by! and don't worry, that's not your real IP address.", 'easter');
             }, 2000);
 
-            // Outros easter eggs
+            // others easter eggs, i have to add more later
             if (mensagem.toLowerCase().includes('windows xp')) {
                 setTimeout(() => mostrarFeedback('🎵 *toca o som de inicialização do XP* 🎵', 'easter'), 4500);
             }
@@ -118,7 +116,7 @@ window.salvarAutografo = function() {
         });
 };
 
-// Função pra mostrar feedback
+// feedback function to show messages
 function mostrarFeedback(mensagem, tipo) {
     const feedback = document.getElementById('feedback');
     if (feedback) {
@@ -134,7 +132,7 @@ function mostrarFeedback(mensagem, tipo) {
     }
 }
 
-// Aguarda o iframe carregar
+
 window.addEventListener('load', function() {
     const iframe = document.querySelector('iframe');
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
@@ -166,7 +164,7 @@ window.addEventListener('load', function() {
         setInterval(atualizarRelogio, 1000);
     }
 
-    // Função pra criar janelas
+
     function criarJanela(titulo, conteudo, largura = 400, altura = 300, usarIframe = false) {
         // Ajusta o tamanho se for maior que a tela
         if (largura > 550) largura = 550;
@@ -271,7 +269,7 @@ window.addEventListener('load', function() {
         return janela;
     }
 
-    // Função pra tornar janelas arrastáveis
+
     function tornarArrastavel(elemento, handle) {
         let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
@@ -373,7 +371,7 @@ hello, IP: ${ipFalso}! welcome to my cv and my guestbook.
 
 write whatever you want here and save it to leave me a message.
 
-i'll read it and reply to you as soon as possible.
+c,mon, fren, leave your mark!
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 </textarea>
@@ -419,7 +417,7 @@ i'll read it and reply to you as soon as possible.
                 </div>
             `, 280, 180);
     
-            // Adiciona evento de duplo clique no ícone do DOOM
+            
             setTimeout(() => {
                 const doomIcon = iframeDoc.getElementById('doomIcon');
                 if (doomIcon) {
